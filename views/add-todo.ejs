@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <title>ExpressNote | My To-do list</title>
+  </head>
+  <style>
+    .navbar img {
+      width: 42px;
+      height: auto;
+    }
+    .nav-item a {
+      color: white;
+    }
+    form {
+      width: 500px;
+      margin: auto;
+    }
+    #add-todo-icon {
+      width: auto;
+      height: 64px;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark">
+      <a href="#" class="navbar-brand text-light">
+        <img src="/list-icon.png" alt="Brand Logo">
+        ExpressNote
+      </a>
+
+      <button class="navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/profile/my-todos" class="nav-link">My To-dos</a>
+          </li>
+          <li class="nav-item">
+            <a href="/profile/add-todo" class="nav-link">Add To-do</a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/logout" class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <!-- add to-do decoration div -->
+      <div class="mb-4 d-flex justify-content-center align-items-center" id="add-todo-decontainer">
+        <img src="/add-todo-icon.png" alt="Add To-do item icon" id="add-todo-icon">
+        <h4 class="display-4 ml-2">What do you want To-do?</h4>
+      </div>
+
+      <!-- add to-do form -->
+      <form action="profile/add-todo" class="text-center" method="POST">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <img src="/label-24px.svg" alt="To-do label icon">
+            </div>
+          </div>
+          <input class="form-control" name="todoName" type="text" id="todoName" placeholder="Your to-do title" required>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <img src="/description-24px.svg" alt="To-do Description icon">
+            </div>
+          </div>
+          <textarea class="form-control" name="todoDescription" id="todoDescription" placeholder="Your to-do task" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Add To-do</button>
+      </form>
+    </div>
+
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>ExpressNote | My To-do list</title>
+  </head>
+  <style>
+    .navbar img {
+      width: 42px;
+      height: auto;
+    }
+    .nav-item a {
+      color: white;
+    }
+    .card-body {
+      position: relative;
+    }
+    .trashcan {
+      position: absolute;
+      right: 10px;
+      top: 33px;
+      cursor: pointer;
+    }
+    .trashcan:hover {
+      fill: red;
+    }
+    #todolist-icon {
+      width: 64px;
+      height: auto;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark">
+      <a href="#" class="navbar-brand text-light">
+        <img src="/list-icon.png" alt="Brand Logo">
+        ExpressNote
+      </a>
+
+      <button class="navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/profile/my-todos" class="nav-link">My To-dos</a>
+          </li>
+          <li class="nav-item">
+            <a href="/profile/add-todo" class="nav-link">Add To-do</a>
+          </li>
+          <li class="nav-item">
+            <a href="/auth/logout" class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <!-- add to-do decoration div -->
+      <div class="mb-4 d-flex justify-content-center" id="todolist-deco">
+        <img src="/todolist.png" alt="To-do list icon" id="todolist-icon">
+        <h4 class="display-4 ml-2">Your To-dos</h4>
+      </div>
+      <!-- user to-do list -->
+      <% if (user.todos.length) { %>
+        <% user.todos.forEach(todo => { %>
+          <div class="card mb-2 mx-auto" style="width: 500px">
+            <div class="card-body">
+              <h4 class="card-title"><%= todo.todoName %></h4>
+              <h6 class="card-subtitle text-muted"><%= todo.todoDescription %></h6>
+              <div class="delete-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" onclick="delTodo('<%= todo._id %>')" class="trashcan" height="24" viewBox="0 0 24 24" width="24" data-toggle="tooltip" data-placement="top" title="delete this to-do"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <h6 class="text-center text-muted">No to-dos yet!</h6>
+      <% } %>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function() {
+        $(function() {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+      });
+
+      function delTodo(id) {
+        const endpoint = `/profile/delete-todo/${id}`;
+
+        fetch(endpoint, {
+          method: "DELETE"
+        })
+        .then((response) => response.json())
+        .then((data) => window.location.href = data.redirect)
+        .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>
