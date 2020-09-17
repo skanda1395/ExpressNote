@@ -4,7 +4,7 @@ module.exports = {
     clientSecret: "dO14odVNq4ywTnqa0ql02pf_"
   },
   mongodb: {
-    dbURI: "mongodb+srv://skanda:test1395@nodetuts.9hb5w.mongodb.net/nodetuts?retryWrites=true&w=majority"
+    dbURI: "mongodb+srv://skanda:test1395@cluster0.ighcu.mongodb.net/<dbname>?retryWrites=true&w=majority"
   },
   session: {
     cookieKey: "thenetninjaisawesome"
